@@ -10,7 +10,7 @@ from plotly.subplots import make_subplots
 # ============================================================
 st.set_page_config(
     page_title="Down-sell Simulator",
-    page_icon="📱",
+    page_icon="**",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -144,7 +144,7 @@ st.markdown(f"""
 # ============================================================
 # TITLE AND INTRODUCTION
 # ============================================================
-st.title("📱 Down-sell Simulator")
+st.title(" Down-sell Simulator")
 st.markdown(f"""
 <div style='background-color: {GRAY_LIGHT}; padding: 15px; border-radius: 5px; border-left: 4px solid {ORANGE_PRIMARY};'>
     This application simulates the economic impact of different targeting strategies 
@@ -202,7 +202,7 @@ with st.sidebar:
     """, unsafe_allow_html=True)
     
     # Economic parameters
-    st.markdown("### 💰 Economic Settings")
+    st.markdown("###  Economic Settings")
     
     action_cost = st.slider(
         "Cost per action (FCFA)",
@@ -225,7 +225,7 @@ with st.sidebar:
     st.markdown("---")
     
     # Targeting mode
-    st.markdown("### 🎯 Targeting Mode")
+    st.markdown("###  Targeting Mode")
     target_mode = st.radio(
         "Select mode",
         ["By Decile", "By Threshold", "Custom"],
@@ -237,7 +237,7 @@ with st.sidebar:
     # Info box
     st.markdown(f"""
     <div style='background-color: {GRAY_LIGHT}; padding: 10px; border-radius: 5px; border-left: 4px solid {ORANGE_PRIMARY};'>
-        <strong>📊 Test Sample:</strong><br>
+        <strong> Test Sample:</strong><br>
         {data['total_test']:,} customers<br>
         Global down-sell rate: {data['global_down_rate']*100:.1f}%
     </div>
@@ -282,7 +282,7 @@ def metric_card(label, value, help_text=""):
 # GLOBAL KPIS
 # ============================================================
 
-st.markdown("### 📊 Key Indicators")
+st.markdown("###  Key Indicators")
 
 col1, col2, col3, col4 = st.columns(4)
 
@@ -323,7 +323,7 @@ st.markdown("<hr>", unsafe_allow_html=True)
 # ============================================================
 
 if target_mode == "By Decile":
-    st.markdown("### 📊 Decile Analysis")
+    st.markdown("###  Decile Analysis")
     
     # Decile selection
     selected_deciles = st.multiselect(
@@ -417,7 +417,7 @@ if target_mode == "By Decile":
 # ============================================================
 
 elif target_mode == "By Threshold":
-    st.markdown("### 🎯 Threshold Analysis")
+    st.markdown("###  Threshold Analysis")
     
     # Threshold selector
     threshold = st.slider(
@@ -440,7 +440,7 @@ elif target_mode == "By Threshold":
     )
     
     # Two-column comparison of optimal thresholds
-    st.markdown("### ⚖️ Optimal Thresholds Comparison")
+    st.markdown("###  Optimal Thresholds Comparison")
     
     col1, col2 = st.columns(2)
     
@@ -534,7 +534,7 @@ elif target_mode == "By Threshold":
 # ============================================================
 
 else:
-    st.markdown("### ⚙️ Custom Simulation")
+    st.markdown("###  Custom Simulation")
     
     col1, col2 = st.columns(2)
     
@@ -570,7 +570,7 @@ else:
     breakeven = (action_cost / (value_saved * effectiveness)) * 100
     st.markdown(f"""
     <div style='background-color: {GRAY_LIGHT}; padding: 15px; border-radius: 5px; border-left: 4px solid {ORANGE_PRIMARY}; margin-top: 20px;'>
-        <strong>💡 Break-even analysis:</strong> You need at least <strong>{breakeven:.1f}%</strong> down-sell rate 
+        <strong> Break-even analysis:</strong> You need at least <strong>{breakeven:.1f}%</strong> down-sell rate 
         to be profitable with these parameters.
     </div>
     """, unsafe_allow_html=True)
@@ -580,9 +580,9 @@ else:
 # ============================================================
 
 st.markdown("<hr>", unsafe_allow_html=True)
-st.markdown("### 📋 Reference Data")
+st.markdown("###  Reference Data")
 
-tab1, tab2, tab3 = st.tabs(["📊 Deciles", "🎯 Thresholds", "📈 Metrics"])
+tab1, tab2, tab3 = st.tabs([" Deciles", " Thresholds", " Metrics"])
 
 with tab1:
     df_display = data['deciles'].copy()
@@ -622,9 +622,9 @@ with tab3:
 # ============================================================
 
 st.markdown("<hr>", unsafe_allow_html=True)
-st.markdown("### 📥 Export Results")
+st.markdown("###  Export Results")
 
-if st.button("📊 Generate Simulation Report", use_container_width=True):
+if st.button(" Generate Simulation Report", use_container_width=True):
     # Create summary DataFrame
     summary = pd.DataFrame({
         'Parameter': [
@@ -649,7 +649,7 @@ if st.button("📊 Generate Simulation Report", use_container_width=True):
     
     csv = summary.to_csv(index=False)
     st.download_button(
-        label="📥 Download Report (CSV)",
+        label=" Download Report (CSV)",
         data=csv,
         file_name="down_sell_simulation.csv",
         mime="text/csv",
@@ -660,7 +660,7 @@ if st.button("📊 Generate Simulation Report", use_container_width=True):
 # METHODOLOGICAL NOTES
 # ============================================================
 
-with st.expander("📌 Methodological Notes"):
+with st.expander(" Methodological Notes"):
     st.markdown(f"""
     <div style='background-color: {GRAY_LIGHT}; padding: 15px; border-radius: 5px;'>
         <ul style='color: {BLACK};'>
@@ -686,4 +686,5 @@ st.markdown(f"""
 <div style='text-align: center; color: {GRAY_DARK}; padding: 10px;'>
     <strong>Orange Down-sell Simulator</strong> v1.0 | Interactive Dashboard
 </div>
+
 """, unsafe_allow_html=True)
